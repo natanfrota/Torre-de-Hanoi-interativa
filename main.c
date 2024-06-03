@@ -8,7 +8,7 @@
         --2--                 |                   |
        ---3---                |                   |
     -------------       -------------       -------------
-       Torres 1            Torres 2            Torres 3
+       Torre 1            Torre 2            Torre 3
 */
 
 void limparTela();
@@ -106,25 +106,17 @@ void imprimirDisco(int i, int discos)
     int j;
     printf("\t\t");
     /*Imprime espaços em branco antes do disco. (2 * discos) representa o tamanho da base da torre 
-    + 1 para simetria + 3 hifens de cada lado (6) - os hífens de cada lado do número na quantidade 
-    que ele representa (2 * i) = quantidade de espaços*/
+    + 1 para simetria + 3 quadrados de cada lado (6) - os quadrados de cada lado do número na quantidade que ele representa (2 * i) = quantidade de espaços*/
     for (j = 0; j < (discos * 2 + 1 + 6 - 2 * i) / 2; j++)
     {
         printf(" ");
     }
-    // Imprime hífens à esquerda do disco
-    for (j = 0; j < i; j++)
+    // Imprime o disco formado por vários quadrados (i quadrados à direita, 1 no meio e i quadrados à esquerda)
+    for (j = 0; j < 2 * i + 1; j++)
     {
         printf("%c", 254);
     }
-    // Imprime o número do disco
-    printf("%c", 254);
-
-    // Imprime hífens à direita do disco
-    for (j = 0; j < i; j++)
-    {
-        printf("%c", 254);
-    }
+    
     // Imprime espaços em branco depois do disco
     for (j = 0; j < (discos * 2 + 1 + 6 - 2 * i) / 2; j++)
     {
