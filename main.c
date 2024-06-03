@@ -1,6 +1,7 @@
 #include "pilha.h"
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> // system()
+#include <windows.h> // Beep()
 
 /*
           |                   |                   |
@@ -8,7 +9,7 @@
         --2--                 |                   |
        ---3---                |                   |
     -------------       -------------       -------------
-       Torre 1            Torre 2            Torre 3
+       Torre 1            Torre 2              Torre 3
 */
 
 void limparTela();
@@ -72,6 +73,7 @@ int main()
             }
 
         moverDisco(&torres[tOrigem], &torres[tDestino]);
+        Beep(400, 200);
 
     } while (estaCheia(&torres[2], qntDiscos) == 0);
 
