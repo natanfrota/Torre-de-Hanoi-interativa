@@ -32,23 +32,6 @@ int main()
     for (i = qntDiscos; i > 0; i--)
         empilhar(&torres[0], i);
 
-    // -----APENAS PARA TESTAR O NÚMERO DE DISCOS-----
-    /*
-    while (1)
-    {
-        printf("\nEscolhe a quantidade de discos com que desejas jogar: ");
-        scanf("%d", &qntDiscos);
-
-        for (i = 0; i < 3; i++)
-            inicializarPilha(&torres[i]);
-
-        for (i = qntDiscos; i > 0; i--)
-            empilhar(&torres[0], i);
-
-        imprimirTorres(torres, qntDiscos);
-    }
-    */
-
     int tOrigem, tDestino, topoD, topoO;
     
     do
