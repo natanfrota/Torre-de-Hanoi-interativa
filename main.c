@@ -1,7 +1,10 @@
 #include "pilha.h"
 #include <stdio.h>
 #include <stdlib.h> // system()
-#include <windows.h> // Beep()
+
+#ifdef _WIN32
+#include <windows.h> //Beep()
+#endif
 
 /*
           |                   |                   |
@@ -13,6 +16,7 @@
 */
 
 void limparTela();
+void emitirSom();
 int estaCheia(Pilha *p, int discos);
 void moverDisco(Pilha *pOrigem, Pilha *pDestino);
 void imprimirDisco(int i, int discos);
@@ -73,7 +77,7 @@ int main()
             }
 
         moverDisco(&torres[tOrigem], &torres[tDestino]);
-        Beep(400, 200);
+        emitirSom();
 
     } while (estaCheia(&torres[2], qntDiscos) == 0);
 
@@ -89,6 +93,13 @@ void limparTela()
     system("cls");
 #else
     system("clear");
+#endif
+}
+
+void emitirSom()
+{
+#ifdef _WIN32
+    Beep(400, 200);
 #endif
 }
 
