@@ -163,7 +163,7 @@ void imprimirTorres(Pilha t[], int discos)
     // Imprime os discos de cada torre ou a haste dela
     for (i = discos; i > 0; i--)
     {
-        // Para cada disco, imprime um linha de cada torre
+        // Para cada disco, imprime uma linha de cada torre
         for (j = 0; j < 3; j++)
         {
             if (tam[j] == i && aux[j])
