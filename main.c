@@ -31,6 +31,11 @@ int main()
     int i, qntDiscos;
     printf("\nEscolhe a quantidade de discos com que desejas jogar: ");
     scanf("%d", &qntDiscos);
+    
+    while(qntDiscos <= 0){
+        printf("\nQuantidade invalida. Tenta novamente.\n");
+        scanf("%d", &qntDiscos);
+    }  
 
     for (i = 0; i < 3; i++)
         inicializarPilha(&torres[i]);
@@ -88,6 +93,7 @@ int main()
 
     limparTela();
     imprimirTorres(torres, qntDiscos);
+    printf("\n\tGanhaste!\n\n");
 
     return 0;
 }
