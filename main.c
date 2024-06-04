@@ -19,6 +19,7 @@ void limparTela();
 void emitirSom();
 int estaCheia(Pilha *p, int discos);
 void moverDisco(Pilha *pOrigem, Pilha *pDestino);
+void imprimirTitulo(int discos);
 void imprimirDisco(int i, int discos);
 void imprimirHaste(int discos);
 void imprimirTorres(Pilha t[], int discos);
@@ -79,7 +80,11 @@ int main()
         moverDisco(&torres[tOrigem], &torres[tDestino]);
         emitirSom();
 
-    } while (estaCheia(&torres[2], qntDiscos) == 0);
+        /* A repetição continua enquanto todos os discos não tiverem sido passados para as
+        torres 2 ou 3*/
+    } while (estaCheia(&torres[1], qntDiscos) == 0 && estaCheia(&torres[2], qntDiscos) == 0);
+    // 0 == 0 && 0 == 0 v
+    // 0 == 0 && 1 == 0 f
 
     limparTela();
     imprimirTorres(torres, qntDiscos);
@@ -112,6 +117,14 @@ void moverDisco(Pilha *pOrigem, Pilha *pDestino)
 {
     int disco = desempilhar(pOrigem);
     empilhar(pDestino, disco);
+}
+
+void imprimirTitulo(int discos){
+    printf("\n\t\t\t\t");
+    int i; 
+    for (i = 0; i < discos * 2; i++)
+        printf(" ");
+    printf("TORRE DE HANOI\n\n");
 }
 
 void imprimirDisco(int i, int discos)
@@ -150,7 +163,6 @@ void imprimirHaste(int discos)
 
 void imprimirTorres(Pilha t[], int discos)
 {
-
     int i, j;
     No *aux[3];
     int tam[3];
@@ -160,6 +172,8 @@ void imprimirTorres(Pilha t[], int discos)
         aux[i] = t[i].topo;
         tam[i] = t[i].tam;
     }
+    
+    imprimirTitulo(discos);
     printf("\n\n");
 
     for (i = 0; i < 3; i++)
