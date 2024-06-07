@@ -6,16 +6,8 @@
 #include <windows.h> //Beep()
 #endif
 
-/*
-          |                   |                   |
-         -1-                  |                   |
-        --2--                 |                   |
-       ---3---                |                   |
-    -------------       -------------       -------------
-       Torre 1            Torre 2              Torre 3
-*/
-
 void limparTela();
+void jogar(int discos);
 void emitirSom();
 int estaCheia(Pilha *p, int discos);
 void moverDisco(Pilha *pOrigem, Pilha *pDestino);
@@ -23,33 +15,129 @@ void imprimirTitulo(int discos);
 void imprimirDisco(int i, int discos);
 void imprimirHaste(int discos);
 void imprimirTorres(Pilha t[], int discos);
+void liberarMemoria(Pilha t[]);
 
 int main()
 {
-    Pilha torres[3];
+    int i, opcao, qntDiscos = 3, dificuldade;
 
-    int i, qntDiscos;
-    printf("\nEscolhe a quantidade de discos com que desejas jogar: ");
-    scanf("%d", &qntDiscos);
-    
-    while(qntDiscos <= 0){
-        printf("\nQuantidade invalida. Tenta novamente.\n");
-        scanf("%d", &qntDiscos);
-    }  
+    do
+    {
+        limparTela();
+        for (i = 0; i < 56; i++)
+            printf("_");
+        printf("\n|\t\t\t\t\t\t\t|\n");
+        printf("|\t\t\tTORRE DE HANOI\t\t\t|\n");
+        printf("|\t\t\t\t\t\t\t|\n");
+        printf("|\t\t1 - JOGAR\t\t\t\t|\n");
+        printf("|\t\t2 - NIVEL DE DIFICULDADE\t\t|\n");
+        printf("|\t\t3 - INSTRUCOES\t\t\t\t|\n");
+        printf("|\t\t4 - SAIR\t\t\t\t|\n");
+        printf("|\t\t\t\t\t\t\t|\n|");
+        for (i = 0; i < 55; i++)
+            printf("_");
+        printf("|\n");
+        
+        scanf("%d", &opcao);
+
+        switch (opcao)
+        {
+        case 1:
+            jogar(qntDiscos);
+            getchar();
+            getchar();
+            break;
+        case 2:
+            limparTela();
+            for (i = 0; i < 56; i++)
+                printf("_");
+            printf("\n|\t\t\t\t\t\t\t|\n");
+            printf("|\t\tNIVEL DE DIFICULDADE\t\t\t|\n");
+            printf("|\t\t\t\t\t\t\t|\n");
+            printf("|\t\t1 - FACIL (3 DISCOS)\t\t\t|\n");
+            printf("|\t\t2 - MEDIO (5 DISCOS)\t\t\t|\n");
+            printf("|\t\t3 - DIFICIL (7 DISCOS)\t\t\t|\n");
+            printf("|\t\t4 - PERSONALIZADO\t\t\t|\n");
+            printf("|\t\t\t\t\t\t\t|\n|");
+            for (i = 0; i < 55; i++)
+                printf("_");
+            printf("|\n");
+            
+            scanf("%d", &dificuldade);
+
+            switch (dificuldade)
+            {
+            case 1:
+                qntDiscos = 3;
+                break;
+            case 2:
+                qntDiscos = 5;
+                break;
+            case 3:
+                qntDiscos = 7;
+                break;
+            case 4:
+                limparTela();
+                printf("\n\nDigita a quantidade de discos desejada: ");
+                scanf("%d", &qntDiscos);
+                while (qntDiscos < 1 || qntDiscos > 20)
+                {
+                    printf("\nQuantidade invalida. Tenta novamente.\n");
+                    scanf("%d", &qntDiscos);
+                }
+                break;
+            default:
+                printf("\nEntrada invalida.\n");
+                getchar();
+                getchar();
+            }
+            break;
+        case 3:
+            limparTela();
+            for (i = 0; i < 56; i++)
+                printf("_");
+            
+            printf("\n|\t\t\t\t\t\t\t|");
+            printf("\n|\t\t\tINSTRUCOES\t\t\t|\n");
+            printf("|\t\t\t\t\t\t\t|\n");
+            printf("| O objetivo deste jogo e mover todos os discos de uma  |\n| haste para outra, respeitando as seguintes regras:\t|\n| Mover apenas um disco de cada vez.\t\t\t|\n| Nao colocar um disco maior sobre um menor.\t\t|\n| Nao mover um disco que esteja abaixo de outro.\t|\n|");
+            
+            for (i = 0; i < 55; i++)
+                printf("_");
+            printf("|\n");
+            getchar();
+            getchar();
+            break;
+        case 4:
+            break;
+        default:
+            printf("\nOpcao invalida.\n");
+            getchar();
+            getchar();
+        }
+    } while (opcao != 4);
+
+    return 0;
+}
+
+void jogar(int discos)
+{
+    Pilha torres[3];
+    int i;
 
     for (i = 0; i < 3; i++)
         inicializarPilha(&torres[i]);
 
-    for (i = qntDiscos; i > 0; i--)
+    for (i = discos; i > 0; i--)
         empilhar(&torres[0], i);
 
     int tOrigem, tDestino, topoD, topoO;
-    
+
     do
     {
         limparTela();
 
-        imprimirTorres(torres, qntDiscos);
+        imprimirTorres(torres, discos);
 
         printf("\nEscolhe a torre de origem do disco: ");
         scanf("%d", &tOrigem);
@@ -59,43 +147,44 @@ int main()
         tOrigem--;
         tDestino--;
 
-        if ((tOrigem < 0 || tOrigem > 2) || (tDestino < 0 || tDestino > 2) ||
-            (tOrigem == tDestino) || estaVazia(&torres[tOrigem]))
+        if ((tOrigem < 0 || tOrigem > 2) || (tDestino < 0 || tDestino > 2))
         {
-            printf("\nJogada invalida.\n");
+            printf("\nJogada invalida: torre de origem ou destino incorreta.\n");
             getchar();
             getchar();
             continue;
         }
-        if ((tOrigem >= 0 && tOrigem <= 2) && (tDestino >= 0 && tDestino <= 2))
-            if (estaVazia(&torres[tDestino]) == 0)
-            {
-                topoD = mostrarTopo(&torres[tDestino]);
-                topoO = mostrarTopo(&torres[tOrigem]);
+        if (estaVazia(&torres[tOrigem]) || (tOrigem == tDestino))
+        {
+            printf("\nJogada invalida: torre de origem vazia ou igual a torre de destino.\n");
+            getchar();
+            getchar();
+            continue;
+        }
+        if (estaVazia(&torres[tDestino]) == 0)
+        {
+            topoD = mostrarTopo(&torres[tDestino]);
+            topoO = mostrarTopo(&torres[tOrigem]);
 
-                if (topoO > topoD)
-                {
-                    printf("\nJogada invalida.\n");
-                    getchar();
-                    getchar();
-                    continue;
-                }
+            if (topoO > topoD)
+            {
+                printf("\nJogada invalida: disco maior nao pode ser movido sobre disco menor.\n");
+                getchar();
+                getchar();
+                continue;
             }
+        }
 
         moverDisco(&torres[tOrigem], &torres[tDestino]);
         emitirSom();
 
-        /* A repetição continua enquanto todos os discos não tiverem sido passados para as
-        torres 2 ou 3*/
-    } while (estaCheia(&torres[1], qntDiscos) == 0 && estaCheia(&torres[2], qntDiscos) == 0);
-    // 0 == 0 && 0 == 0 v
-    // 0 == 0 && 1 == 0 f
+        /* A repetição continua enquanto todos os discos não tiverem sido passados para a torre 2 ou 3*/
+    } while (estaCheia(&torres[1], discos) == 0 && estaCheia(&torres[2], discos) == 0);
 
     limparTela();
-    imprimirTorres(torres, qntDiscos);
+    imprimirTorres(torres, discos);
     printf("\n\tGanhaste!\n\n");
-
-    return 0;
+    liberarMemoria(torres);
 }
 
 void limparTela()
@@ -137,8 +226,7 @@ void imprimirDisco(int i, int discos)
 {
     int j;
     printf("\t\t");
-    /*Imprime espaços em branco antes do disco. (2 * discos) representa o tamanho da base da torre 
-    + 1 para simetria + 3 quadrados de cada lado (6) - os quadrados de cada lado do número na quantidade que ele representa (2 * i) = quantidade de espaços*/
+    /*Imprime espaços em branco antes do disco. (2 * discos) representa o tamanho da base da torre + 1 para simetria + 3 quadrados de cada lado (6) - os quadrados de cada lado do quadrado do meio na quantidade que o número representa (2 * i) = quantidade de espaços*/
     for (j = 0; j < (discos * 2 + 1 + 6 - 2 * i) / 2; j++)
     {
         printf(" ");
@@ -228,4 +316,17 @@ void imprimirTorres(Pilha t[], int discos)
     }
 
     printf("\n\n");
+}
+
+void liberarMemoria(Pilha t[]){
+    int i, tam;
+
+    for (i = 0; i < 3; i++){
+        if(estaVazia(&t[i]) == 0){
+            tam = t[i].tam;
+            
+        for (; tam > 0; tam--)
+            desempilhar(&t[i]);
+        }
+    }
 }
