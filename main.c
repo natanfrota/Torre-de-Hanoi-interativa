@@ -324,9 +324,8 @@ void liberarMemoria(Pilha t[]){
     for (i = 0; i < 3; i++){
         if(estaVazia(&t[i]) == 0){
             tam = t[i].tam;
-            
-        for (; tam > 0; tam--)
-            desempilhar(&t[i]);
+            for (; tam > 0; tam--)
+                desempilhar(&t[i]);
         }
     }
 }
