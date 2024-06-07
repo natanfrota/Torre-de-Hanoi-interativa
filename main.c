@@ -279,7 +279,7 @@ void imprimirTorres(Pilha t[], int discos)
         // Para cada disco, imprime uma linha de cada torre
         for (j = 0; j < 3; j++)
         {
-            if (tam[j] == i && aux[j])
+            if (tam[j] == i)
             {
                 imprimirDisco(aux[j]->valor, discos);
                 tam[j]--;
