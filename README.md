@@ -5,7 +5,7 @@ A Torre de Hanoi é um jogo matemático que consiste em mover discos de um pino 
 
 Compilação do projeto
 
-Para compilar este projeto, você utilize o seguinte comando no terminal:
+Para compilar este projeto, utilize o seguinte comando no terminal:
 
 gcc pilha.c pilha.h main.c -o torre-de-hanoi
 
