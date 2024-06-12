@@ -92,7 +92,7 @@ int main()
             printf("\t\t|                        INSTRUCOES                        |\n");
             printf("\t\t|                                                          |\n");
             printf("\t\t|   O objetivo deste jogo e mover todos os discos de uma   |\n");
-            printf("\t\t|   para outra, respeitando as seguintes regras:           |\n");
+            printf("\t\t|   haste para outra, respeitando as seguintes regras:     |\n");
             printf("\t\t|   - Mover apenas um disco de cada vez.                   |\n");
             printf("\t\t|   - Nao colocar um disco maior sobre um menor.           |\n");
             printf("\t\t|   - Nao mover um disco que esteja abaixo de outro.       |\n");
