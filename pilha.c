@@ -33,7 +33,7 @@ int desempilhar(Pilha *p)
     No *aux = p->topo;
 
     if (estaVazia(p)){
-        return -1;
+        return 0;
     }
 
     int temp = p->topo->valor;
