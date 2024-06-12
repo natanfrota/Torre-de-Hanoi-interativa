@@ -24,15 +24,15 @@ int main()
     do
     {
         limparTela();
-        printf("___________________________________________________________\n");
-        printf("|                                                          |\n");
-        printf("|                       TORRE DE HANOI                     |\n");
-        printf("|                                                          |\n");
-        printf("|                   1 - JOGAR                              |\n");
-        printf("|                   2 - NIVEL DE DIFICULDADE               |\n");
-        printf("|                   3 - INSTRUCOES                         |\n");
-        printf("|                   4 - SAIR                               |\n");
-        printf("|__________________________________________________________|\n");
+        printf("\t\t___________________________________________________________\n");
+        printf("\t\t|                                                          |\n");
+        printf("\t\t|                       TORRE DE HANOI                     |\n");
+        printf("\t\t|                                                          |\n");
+        printf("\t\t|                   1 - JOGAR                              |\n");
+        printf("\t\t|                   2 - NIVEL DE DIFICULDADE               |\n");
+        printf("\t\t|                   3 - INSTRUCOES                         |\n");
+        printf("\t\t|                   4 - SAIR                               |\n");
+        printf("\t\t|__________________________________________________________|\n");
         
         scanf("%d", &opcao);
 
@@ -45,15 +45,15 @@ int main()
             break;
         case 2:
             limparTela();
-            printf("___________________________________________________________\n");
-            printf("|                                                          |\n");
-            printf("|                   NIVEL DE DIFICULDADE                   |\n");
-            printf("|                                                          |\n");
-            printf("|                   1 - FACIL (3 DISCOS)                   |\n");
-            printf("|                   2 - MEDIO (5 DISCOS)                   |\n");
-            printf("|                   3 - DIFICIL (7 DISCOS)                 |\n");
-            printf("|                   4 - PERSONALIZADO                      |\n");
-            printf("|__________________________________________________________|\n");
+            printf("\t\t___________________________________________________________\n");
+            printf("\t\t|                                                          |\n");
+            printf("\t\t|                   NIVEL DE DIFICULDADE                   |\n");
+            printf("\t\t|                                                          |\n");
+            printf("\t\t|                   1 - FACIL (3 DISCOS)                   |\n");
+            printf("\t\t|                   2 - MEDIO (5 DISCOS)                   |\n");
+            printf("\t\t|                   3 - DIFICIL (7 DISCOS)                 |\n");
+            printf("\t\t|                   4 - PERSONALIZADO                      |\n");
+            printf("\t\t|__________________________________________________________|\n");
             
             scanf("%d", &dificuldade);
 
@@ -87,16 +87,16 @@ int main()
         case 3:
             limparTela();
             
-            printf("___________________________________________________________\n");
-            printf("|                                                          |\n");
-            printf("|                        INSTRUCOES                        |\n");
-            printf("|                                                          |\n");
-            printf("|   O objetivo deste jogo e mover todos os discos de uma   |\n\
-                    |   para outra, respeitando as seguintes regras:           |\n\
-                    |   - Mover apenas um disco de cada vez.                   |\n\
-                    |   - Nao colocar um disco maior sobre um menor.           |\n\
-                    |   - Nao mover um disco que esteja abaixo de outro.       |\n|");
-            printf("|__________________________________________________________|\n");
+            printf("\t\t___________________________________________________________\n");
+            printf("\t\t|                                                          |\n");
+            printf("\t\t|                        INSTRUCOES                        |\n");
+            printf("\t\t|                                                          |\n");
+            printf("\t\t|   O objetivo deste jogo e mover todos os discos de uma   |\n");
+            printf("\t\t|   para outra, respeitando as seguintes regras:           |\n");
+            printf("\t\t|   - Mover apenas um disco de cada vez.                   |\n");
+            printf("\t\t|   - Nao colocar um disco maior sobre um menor.           |\n");
+            printf("\t\t|   - Nao mover um disco que esteja abaixo de outro.       |\n");
+            printf("\t\t|__________________________________________________________|\n");
             getchar();
             getchar();
             break;
